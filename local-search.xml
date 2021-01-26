@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>小程序获取经纬度</title>
+    <link href="undefined2021/01/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%BB%8F%E7%BA%AC%E5%BA%A6/"/>
+    <url>2021/01/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%BB%8F%E7%BA%AC%E5%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<h2 id="小程序app-js-使用qqmapsdk的代码"><a href="#小程序app-js-使用qqmapsdk的代码" class="headerlink" title="小程序app.js 使用qqmapsdk的代码"></a>小程序app.js 使用qqmapsdk的代码</h2><pre><code>1. ### 导入文件</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> QQMapWX = <span class="built_in">require</span>(<span class="string">'./utils/qqmap-wx-jssdk.js'</span>);   </span><br><span class="line"><span class="keyword">var</span> qqmapsdk = <span class="keyword">new</span> QQMapWX(&#123; <span class="attr">key</span>: <span class="string">'XXXXX-WACK4-XXXXX-XNRAJ-UX3D6-XXXXX'</span> </span><br><span class="line">    <span class="comment">//这里自己的key秘钥进行填 充 &#125;);</span></span><br></pre></td></tr></table></figure><ol start="2"><li><p>js 方法</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">getlocation()&#123;</span><br><span class="line">wx.getLocation(&#123;</span><br><span class="line">     type: <span class="string">'wgs84'</span>,</span><br><span class="line">     success(res) &#123;</span><br><span class="line">     qqmapsdk.reverseGeocoder(&#123;</span><br><span class="line">         location: &#123; <span class="attr">latitude</span>: res.latitude, <span class="attr">longitude</span>: res.longitude, &#125;,</span><br><span class="line">         success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">             wx.setStorage(&#123; <span class="attr">key</span>: <span class="string">'currentLocation'</span>, <span class="attr">data</span>: res.result.address &#125;)</span><br><span class="line">         &#125;,</span><br><span class="line">         fail: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="string">'fail'</span>,res);</span><br><span class="line">         &#125;,</span><br><span class="line">         complete: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="string">'complete'</span>,res);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数组方法</title>
     <link href="undefined2019/12/11/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/"/>
     <url>2019/12/11/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
