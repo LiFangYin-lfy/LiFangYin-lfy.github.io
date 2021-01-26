@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Hexo</title>
+  <title>Tag - js ~ Hexo</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -38,7 +38,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -112,10 +112,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -131,166 +127,20 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mb-4 mx-auto">
+<div class="list-group">
+<!--  <p class="h4">1 posts in total.</p>-->
+  <hr>
+  
     
+      
+      <p class="h5">2021</p>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2021/01/26/js-%E5%8F%96%E5%BE%97%E5%BD%93%E5%A4%A90%E7%82%B9-23-59-59-%E6%97%B6%E9%97%B4/">
-        <p class="h4 index-header">js 取得当天0点 / 23:59:59 时间</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">js 取得今天0点：12const start &#x3D; new Date(new Date(new Date().toLocaleDateString()).getTime());console.log(start); &#x2F;&#x2F;Mon Dec 04 2017 00:00:00 GMT+0800 (中国标准时间)
-
-同理算出：
-js 取得今天 23:59:5912const start &#x3D; new Date(new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000-1);console.log(start); &#x2F;&#x2F;Mon Dec 04 2017 23:59:59 GMT+0800 (中国标准时间)
-
-其他也是同理类推
+    <a href="/2021/01/26/js-%E5%8F%96%E5%BE%97%E5%BD%93%E5%A4%A90%E7%82%B9-23-59-59-%E6%97%B6%E9%97%B4/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">js 取得当天0点 / 23:59:59 时间</span>
+      <span style="float: right;">01-26</span>
+    </a>
+  
 </div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2021-01-26&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/js">js</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2021/01/26/%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BD%A6%E7%89%8C%E5%8F%B7%E9%94%AE%E7%9B%98/">
-        <p class="h4 index-header">原生小程序自定义车牌号键盘</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">原生小程序自定义车牌号键盘导入组件页面数据js页面12345678910111213141516171819202122232425262728293031323334353637383940data:&#123;	carCodeNumber: '', //车牌号    isKeyboard: false, //是否显示键盘    keyboardType: 'keyboardOne', //键盘类型    isKeyboardContent: true, //   控制首先展示省称还是英文    maxLength: '', //最大长度    minLength: '', //最小程度    test: '', //正则    placeholder: '', //提示信息    whichInput: '', //方法名    inputContent: '', //input内容    carCode: ''  &#125;methods:&#123;  getCarCode() &#123;    this.setData(&#123;      isKeyboard: tr</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2021-01-26&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F">小程序</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2021/01/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%BB%8F%E7%BA%AC%E5%BA%A6/">
-        <p class="h4 index-header">小程序获取经纬度</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">小程序app.js 使用qqmapsdk的代码1. ### 导入文件123var QQMapWX = require('./utils/qqmap-wx-jssdk.js');   var qqmapsdk = new QQMapWX(&#123; key: 'XXXXX-WACK4-XXXXX-XNRAJ-UX3D6-XXXXX'     //这里自己的key秘钥进行填 充 &#125;);
-
-
-js 方法
-12345678910111213141516171819getlocation()&#123;	wx.getLocation(&#123;     type: 'wgs84',     success(res) &#123;     qqmapsdk.reverseGeocoder(&#123;         location: &#123; latitude: res.latitude, longitude: res.longitude, &#125;,         success:function(res)&#123;             wx.setStorag</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2021-01-26&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/12/11/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">
-        <p class="h4 index-header">数组方法</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">数组方法123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192Array.map()此方法是将数组中的每个元素调用一个</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-11&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/12/11/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-More info: Server
-Generate static files1$ hexo generate
-
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-
-More info: Deployment
-</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-11&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-
 
 
 
@@ -413,7 +263,7 @@ More info: Deployment
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "Tag - js&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
