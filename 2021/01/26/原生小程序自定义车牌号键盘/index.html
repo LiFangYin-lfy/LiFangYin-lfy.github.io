@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>原生小程序自定义车牌号键盘 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Tuesday, January 26th 2021, 8:23 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      8 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="原生小程序自定义车牌号键盘"><a href="#原生小程序自定义车牌号键盘" class="headerlink" title="原生小程序自定义车牌号键盘"></a>原生小程序自定义车牌号键盘</h1><h2 id="导入组件页面数据"><a href="#导入组件页面数据" class="headerlink" title="导入组件页面数据"></a>导入组件页面数据</h2><h3 id="js页面"><a href="#js页面" class="headerlink" title="js页面"></a>js页面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">	carCodeNumber: <span class="string">''</span>, <span class="comment">//车牌号</span></span><br><span class="line">    isKeyboard: <span class="literal">false</span>, <span class="comment">//是否显示键盘</span></span><br><span class="line">    keyboardType: <span class="string">'keyboardOne'</span>, <span class="comment">//键盘类型</span></span><br><span class="line">    isKeyboardContent: <span class="literal">true</span>, <span class="comment">//   控制首先展示省称还是英文</span></span><br><span class="line">    maxLength: <span class="string">''</span>, <span class="comment">//最大长度</span></span><br><span class="line">    minLength: <span class="string">''</span>, <span class="comment">//最小程度</span></span><br><span class="line">    test: <span class="string">''</span>, <span class="comment">//正则</span></span><br><span class="line">    placeholder: <span class="string">''</span>, <span class="comment">//提示信息</span></span><br><span class="line">    whichInput: <span class="string">''</span>, <span class="comment">//方法名</span></span><br><span class="line">    inputContent: <span class="string">''</span>, <span class="comment">//input内容</span></span><br><span class="line">    carCode: <span class="string">''</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">  getCarCode() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isKeyboard: <span class="literal">true</span>,</span><br><span class="line">      maxLength: <span class="number">17</span>,</span><br><span class="line">      minLength: <span class="number">17</span>,</span><br><span class="line">      isKeyboardContent: <span class="literal">false</span>,</span><br><span class="line">      test: <span class="string">'[A-Z0-9]&#123;3&#125;'</span>,</span><br><span class="line">      placeholder: <span class="string">'请输入17位车辆识别代号'</span>,</span><br><span class="line">      whichInput: <span class="string">'changeCarCode'</span>,</span><br><span class="line">      inputContent: <span class="keyword">this</span>.data.carCode</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  changeCarCode(e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isKeyboard: <span class="literal">false</span>,</span><br><span class="line">      carCode: e.detail.inputContent</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.carCode);</span><br><span class="line">  &#125;,</span><br><span class="line">  getCodeNumber() &#123;</span><br><span class="line">    <span class="keyword">this</span>.getCarCode()</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="json-文件"><a href="#json-文件" class="headerlink" title="json 文件"></a>json 文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"usingComponents": &#123;</span><br><span class="line">     "keyboard": "../../Components/demo/demo"</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="html页面数据"><a href="#html页面数据" class="headerlink" title="html页面数据"></a>html页面数据</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keyboard</span> <span class="attr">isKeyboard</span>=<span class="string">"&#123;&#123;isKeyboard&#125;&#125;"</span> <span class="attr">keyboardType</span>=<span class="string">"&#123;&#123;keyboardType&#125;&#125;"</span> <span class="attr">maxLength</span>=<span class="string">"&#123;&#123;maxLength&#125;&#125;"</span> <span class="attr">minLength</span>=<span class="string">"&#123;&#123;minLength&#125;&#125;"</span> <span class="attr">test</span>=<span class="string">"&#123;&#123;test&#125;&#125;"</span> <span class="attr">placeholder</span>=<span class="string">"&#123;&#123;placeholder&#125;&#125;"</span> <span class="attr">isKeyboardContent</span>=<span class="string">"&#123;&#123;isKeyboardContent&#125;&#125;"</span> <span class="attr">bind:fwhfContent</span>=<span class="string">"&#123;&#123;whichInput&#125;&#125;"</span> <span class="attr">inputContent</span>=<span class="string">"&#123;&#123;inputContent&#125;&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入车牌号"</span> <span class="attr">value</span>=<span class="string">'&#123;&#123;carCode&#125;&#125;'</span> <span class="attr">bindtap</span>=<span class="string">'getCodeNumber'</span> <span class="attr">disabled</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="封装的组件"><a href="#封装的组件" class="headerlink" title="封装的组件"></a>封装的组件</h2><h3 id="html页面"><a href="#html页面" class="headerlink" title="html页面"></a>html页面</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboard &#123;&#123;isKeyboard ? 'show' : 'hide'&#125;&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;keyboardType == 'keyboardOne' ? 'show' : 'hide'&#125;&#125;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"inputBox"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"inputBoxContent &#123;&#123;inputContent ? 'lightContent' : 'darkContent'&#125;&#125;"</span>&gt;</span></span><br><span class="line">                    &#123;&#123;inputContent || placeholder&#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTitle"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTitleLogo"</span>&gt;</span>love.fwhf.xyz<span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTitleContent &#123;&#123;isKeyboardContent ? 'keyboardTitleContentColorDark' : 'keyboardTitleContentColorWhite'&#125;&#125;"</span> <span class="attr">data-value</span>=<span class="string">"省称"</span> <span class="attr">bindtap</span>=<span class="string">"changeKeyboardContent"</span>&gt;</span></span><br><span class="line">                    省称</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTitleContent &#123;&#123;isKeyboardContent ? 'keyboardTitleContentColorWhite' : 'keyboardTitleContentColorDark'&#125;&#125;"</span> <span class="attr">data-value</span>=<span class="string">"英\数"</span> <span class="attr">bindtap</span>=<span class="string">"changeKeyboardContent"</span>&gt;</span></span><br><span class="line">                    英\数</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardFinish"</span> <span class="attr">data-value</span>=<span class="string">"✔"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span>✔<span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentOne &#123;&#123;isKeyboardContent ? 'keyboardContentOneShow' : 'keyboardContentOneHide'&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentOneContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categoryOne&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                    &#123;&#123;item&#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwo &#123;&#123;isKeyboardContent ? 'keyboardContentTwoHide' : 'keyboardContentTwoShow'&#125;&#125;"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineOne"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineOneContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categoryTwo&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                        &#123;&#123;item&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineTwo"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineTwoContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categoryThree&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                        &#123;&#123;item&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineThree"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineThreeContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categoryFour&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                        &#123;&#123;item&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineFour"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardContentTwoLineFourContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categoryFive&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                        &#123;&#123;item&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;keyboardType == 'keyboardTwo' ? 'show' : 'hide'&#125;&#125;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"inputBox"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"inputBoxContent &#123;&#123;inputContent ? 'lightContent' : 'darkContent'&#125;&#125;"</span>&gt;</span></span><br><span class="line">                    &#123;&#123;inputContent || placeholder&#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTwo"</span> <span class="attr">bindtap</span>=<span class="string">"keyboard"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">cover-view</span> <span class="attr">class</span>=<span class="string">"keyboardTwoContent"</span> <span class="attr">hover-class</span>=<span class="string">"keyboardContentDark"</span> <span class="attr">hover-start-time</span>=<span class="string">"0"</span> <span class="attr">hover-stay-time</span>=<span class="string">"100"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;categorySix&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-value</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span></span><br><span class="line">                    &#123;&#123;item&#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">cover-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="json页面"><a href="#json页面" class="headerlink" title="json页面"></a>json页面</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"component"</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">"usingComponents"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="less页面"><a href="#less页面" class="headerlink" title="less页面"></a>less页面</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.keyboard</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(244, 244, 244);</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.show</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.hide</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inputBox</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inputBoxContent</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10</span>rpx auto <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="comment">/* width: 690rpx; */</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="comment">/* border-radius: 20rpx; */</span></span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(255, 255, 255);</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">36</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.lightContent</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.darkContent</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(166, 166, 166);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitle</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">750</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitle</span> <span class="selector-class">.keyboardTitleLogo</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">290</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(166, 166, 166);</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitle</span> <span class="selector-class">.keyboardTitleContent</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">140</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">70</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitle</span> <span class="selector-class">.keyboardFinish</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">130</span>rpx;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">10</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">70</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentOne</span> &#123;</span><br><span class="line">    <span class="comment">/* display:flex; */</span></span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="comment">/* background:white; */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentOneShow</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentOneHide</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentTwo</span> &#123;</span><br><span class="line">    <span class="comment">/* display:flex; */</span></span><br><span class="line">    <span class="comment">/* background:white; */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentTwoHide</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentTwoShow</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentOneContent</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">88</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">91</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">2</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">6</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineOne</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineTwo</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineThree</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineFour</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineOneContent</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineTwoContent</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineThreeContent</span>,</span><br><span class="line"><span class="selector-class">.keyboardContentTwoLineFourContent</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">71</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">91</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">2</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">6</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTwo</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTwoContent</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">230</span>rpx;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">12</span>rpx <span class="number">6</span>rpx <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">100</span>rpx;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">36</span>rpx;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitleContentColorWhite</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardTitleContentColorDark</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(222, 222, 222);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.keyboardContentDark</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(222, 222, 222);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="js数据"><a href="#js数据" class="headerlink" title="js数据"></a>js数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  properties: &#123;</span><br><span class="line">    <span class="string">'isKeyboard'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">Boolean</span>,</span><br><span class="line">      value: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'keyboardType'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">"keyboardOne"</span></span><br><span class="line">      <span class="comment">// value: "keyboardTwo"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'maxLength'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span>,</span><br><span class="line">      value: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'minLength'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span>,</span><br><span class="line">      value: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'test'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'placeholder'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'inputContent'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'keyboardTwo'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'isKeyboardContent'</span>: &#123;</span><br><span class="line">      type: <span class="built_in">Boolean</span>,</span><br><span class="line">      value: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    categoryOne: <span class="string">'粤京津沪冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵川青藏琼宁渝✘'</span>.split(<span class="string">''</span>),</span><br><span class="line">    categoryTwo: <span class="string">'1234567890'</span>.split(<span class="string">''</span>),</span><br><span class="line">    categoryThree: <span class="string">'QWERTYUIOP'</span>.split(<span class="string">''</span>),</span><br><span class="line">    categoryFour: <span class="string">'ASDFGHJKLZ'</span>.split(<span class="string">''</span>),</span><br><span class="line">    categoryFive: <span class="string">'✘XCVBNM✔'</span>.split(<span class="string">''</span>),</span><br><span class="line">    categorySix: <span class="string">'123456789✘0✔'</span>.split(<span class="string">''</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeKeyboardContent(e) &#123;</span><br><span class="line">      <span class="keyword">if</span> (e.currentTarget.dataset.value == <span class="string">'省称'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">          isKeyboardContent: <span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (e.currentTarget.dataset.value == <span class="string">'英\数'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">          isKeyboardContent: <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    keyboard(e) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e)</span><br><span class="line">      <span class="keyword">if</span> (e.target.dataset.value == <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (e.target.dataset.value == <span class="string">'✘'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.data.inputContent.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">            inputContent: <span class="keyword">this</span>.data.inputContent.substring(<span class="number">0</span>, <span class="keyword">this</span>.data.inputContent.length - <span class="number">1</span>)</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.inputContent, <span class="string">'this.data.inputContent'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (e.target.dataset.value == <span class="string">'✔'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.data.minLength != <span class="string">''</span> &amp;&amp; <span class="keyword">this</span>.data.inputContent.length &lt; <span class="keyword">this</span>.data.minLength) &#123;</span><br><span class="line">          wx.showToast(&#123;</span><br><span class="line">            title: <span class="string">'输入位数不得小于'</span> + <span class="keyword">this</span>.data.minLength + <span class="string">'位'</span>,</span><br><span class="line">            icon: <span class="string">'none'</span></span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="keyword">this</span>.data.test)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.data.test != <span class="string">''</span> &amp;&amp; !reg.test(<span class="keyword">this</span>.data.inputContent)) &#123;</span><br><span class="line">          wx.showToast(&#123;</span><br><span class="line">            title: <span class="string">'不符合规则'</span>,</span><br><span class="line">            icon: <span class="string">'none'</span></span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.triggerEvent(<span class="string">'fwhfContent'</span>, &#123;</span><br><span class="line">          inputContent: <span class="keyword">this</span>.data.inputContent</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.data.maxLength != <span class="string">''</span> &amp;&amp; <span class="keyword">this</span>.data.inputContent.length &gt;= <span class="keyword">this</span>.data.maxLength) &#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">'输入位数不得超过'</span> + <span class="keyword">this</span>.data.maxLength + <span class="string">'位'</span>,</span><br><span class="line">          icon: <span class="string">'none'</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        inputContent: <span class="keyword">this</span>.data.inputContent + e.target.dataset.value</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.inputContent);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F">小程序</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "原生小程序自定义车牌号键盘&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
